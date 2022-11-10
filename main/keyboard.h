@@ -1,0 +1,25 @@
+#ifndef KEYBOARD_H_  
+#define KEYBOARD_H_
+
+/*Keyboard definitions*/
+#define PRESSED 1
+#define RELEASED 0
+
+#define GPIO_COLUMN_1     22//21
+#define GPIO_COLUMN_2     21//19
+#define GPIO_COLUMN_3     19//18
+#define GPIO_COLUMN_4     18//5
+
+
+#define GPIO_ROW_1     12//5//4
+#define GPIO_ROW_2     4//2
+#define GPIO_ROW_3     2//15
+#define GPIO_ROW_4     13//15//0
+
+extern int keyboard[];
+extern int keyValue;
+
+int keyboardInit();
+int keyboardRefresh();
+
+#endif
