@@ -19,6 +19,8 @@
 
 int keyValue=0;
 
+const char *TAG = "keyboard";
+
 int columnNumber=0;
 int rowNumber=0;
 int keyboard[]={0,1,2,3,4,5,6,7,8};
@@ -129,4 +131,105 @@ int keyboardRefresh( void ){
 	}*/
 
 	return keyValue;
+}
+
+/*
+* Keyboard parameters init
+*/
+void initCaller(){
+    //generating topics for reporting
+    sprintf(topicCallerEvent,"/Beds/Caller-events");    
+}
+
+
+/*
+* Generating JSON message
+*/
+
+void generateJsonKey(char *buffer,int key){
+cJSON *my_json;
+cJSON *keyId = NULL;
+char *string = NULL;    
+my_json = cJSON_CreateObject();
+if (my_json == NULL)
+    {
+        return;
+    }
+keyId = cJSON_CreateNumber(key);
+    if (keyId == NULL)
+    {
+        return;
+    }    
+//Populate my_json
+//my_json.
+cJSON_AddItemToObject(my_json, "callerId",keyId);
+//Convert my_json to char array, for sending in an API perhaps
+string = cJSON_Print(my_json);
+//printf(string);
+sprintf(buffer,string);
+
+//Free the memory
+cJSON_Delete(my_json);
+
+}
+
+
+//generating json for sending status data
+
+void generateJson(char *buffer,int dispositivoId, char *nombre,char *ubicacion, int luz1, int luz2, float temp, float humedad){
+cJSON *my_json;
+cJSON *deviceId = NULL;
+cJSON *name = NULL;
+cJSON *ubicacionLocal = NULL;
+cJSON *TempLocal = NULL;
+cJSON *HumLocal = NULL;
+cJSON *luz1Local = NULL;
+cJSON *luz2Local = NULL;
+char *string = NULL;    
+my_json = cJSON_CreateObject();
+if (my_json == NULL)
+    {
+        return;
+    }
+deviceId = cJSON_CreateNumber(dispositivoId);
+    if (deviceId == NULL)
+    {
+        return;
+    }    
+name = cJSON_CreateString(nombre);
+    if (name == NULL)
+    {
+        return;
+    }  
+ubicacionLocal = cJSON_CreateString(ubicacion);
+    if (ubicacionLocal == NULL)
+    {
+        return;
+    }        
+
+
+luz1Local = cJSON_CreateNumber(luz1);
+luz2Local = cJSON_CreateNumber(luz2);
+
+int tmpLocal= temp/1;
+TempLocal = cJSON_CreateNumber(tmpLocal);
+int humLocal= humedad/1;
+HumLocal = cJSON_CreateNumber(humLocal);
+//Populate my_json
+//my_json.
+cJSON_AddItemToObject(my_json, "dispositivoId", deviceId);
+cJSON_AddItemToObject(my_json, "nombre", name);
+cJSON_AddItemToObject(my_json, "ubicacion", ubicacionLocal);
+cJSON_AddItemToObject(my_json, "luz1", luz1Local);
+cJSON_AddItemToObject(my_json, "luz2", luz2Local);
+cJSON_AddItemToObject(my_json, "temperatura", TempLocal);
+cJSON_AddItemToObject(my_json, "humedad", HumLocal);
+
+//Convert my_json to char array, for sending in an API perhaps
+string = cJSON_Print(my_json);
+sprintf(buffer,string);
+
+//Free the memory
+cJSON_Delete(my_json);
+
 }

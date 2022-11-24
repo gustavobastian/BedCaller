@@ -16,10 +16,17 @@
 #define GPIO_ROW_3     2//15
 #define GPIO_ROW_4     13//15//0
 
+char topicCallerEvent[100];
+
 extern int keyboard[];
 extern int keyValue;
 
 int keyboardInit();
 int keyboardRefresh();
+void initCaller();
+void generateJson(char *buffer,int dispositivoId, char *nombre,char *ubicacion,int luz1, int luz2 ,float temp, float humedad);
+void generateJsonKey(char *buffer,int key);
+
+
 
 #endif

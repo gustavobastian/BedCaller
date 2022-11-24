@@ -22,21 +22,17 @@ void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event
     switch ((esp_mqtt_event_id_t)event_id) {
     case MQTT_EVENT_CONNECTED:    
         ESP_LOGI(TAG, "MQTT_EVENT_CONNECTED");
-        msg_id = esp_mqtt_client_publish(client, topicDataSensor, "{}", 0, 1, 0);
+        msg_id = esp_mqtt_client_publish(client, topicCallerEvent, "{}", 0, 1, 0);
         ESP_LOGI(TAG, "sent publish successful, msg_id=%d", msg_id);        
-        msg_id = esp_mqtt_client_publish(client, topicDataDesconexion, "{\"status\":\"Online\"}", 0, 1, 0);
-        ESP_LOGI(TAG, "sent publish connection successful, msg_id=%d", msg_id);        
-        msg_id = esp_mqtt_client_subscribe(client, topicParamSensor, 1);
-        ESP_LOGI(TAG, "sent subscribe successful, msg_id=%d", msg_id);
+        msg_id = esp_mqtt_client_publish(client, topicCallerEvent, "{\"callerId\":0}", 0, 1, 0);
+        ESP_LOGI(TAG, "sent publish connection successful, msg_id=%d", msg_id);                
         break;
         
     case MQTT_EVENT_DISCONNECTED:
         ESP_LOGI(TAG, "MQTT_EVENT_DISCONNECTED");
         break;
 
-    case MQTT_EVENT_SUBSCRIBED:        
-        msg_id = esp_mqtt_client_publish(client, topicParamSensor, "{ }", 0, 0, 0);
-        ESP_LOGI(TAG, "sent publish successful, msg_id=%d", msg_id);
+    case MQTT_EVENT_SUBSCRIBED:                
         break;
     case MQTT_EVENT_UNSUBSCRIBED:
         ESP_LOGI(TAG, "MQTT_EVENT_UNSUBSCRIBED, msg_id=%d", event->msg_id);
@@ -71,8 +67,8 @@ void mqtt_app_start(void)
 {
     esp_mqtt_client_config_t mqtt_cfg = {
         .uri = BROKER_URI,        
-        .lwt_topic=topicDataDesconexion,
-        .lwt_msg= "{\"status\":\"Offline\"}",//"{\"status\":\"Offline\"}",
+        .lwt_topic=topicCallerEvent,
+        .lwt_msg= "{\"callerId\":\"0\"}",//"{\"status\":\"Offline\"}",
         .lwt_msg_len=22,
         .lwt_qos=1,
         .keepalive=60,
