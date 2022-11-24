@@ -1,5 +1,4 @@
 build
 vscode
 devcontainer
-main/passwords.h
 main/passwords_file.h
