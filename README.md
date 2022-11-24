@@ -11,7 +11,7 @@ The system use MQTT websocket with no auth.
 
 
 ## How to compile
-In order to compile the project, a file called "passwords.h" must be created inside ./main with the following content:
+In order to compile the project, a file called "passwords_file.h" must be created inside ./main with the following content:
 
 ```
 #ifndef PASSWORDS_H_  
