@@ -7,7 +7,7 @@
 
 
 // Set your local broker URI
-#include "passwords.h"
+#include "passwords_file.h"
 
 
 #define MOSQUITO_USER_NAME            "Sensor2"

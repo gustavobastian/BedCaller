@@ -12,6 +12,7 @@
     "*.ipp": "c",
     "*.inc": "c",
     "sensor_config.h": "c",
-    "mqtt_functions.h": "c"
+    "mqtt_functions.h": "c",
+    "passwords_file.h": "c"
   }
 }
