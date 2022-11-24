@@ -7,13 +7,12 @@
 
 
 // Set your local broker URI
-#define BROKER_URI "ws://192.168.1.100:9001"//1883//"mqtts://192.168.1.100:8883"//1883
+#include "passwords.h"
 
-#define MOSQUITO_USER_NAME            "Sensor2"//"Gus" // "usr1"
-#define MOSQUITO_USER_PASSWORD        "Sensor2Pass"// "GusPass" //"miPassword"
+
+#define MOSQUITO_USER_NAME            "Sensor2"
+#define MOSQUITO_USER_PASSWORD        "Sensor2Pass"
 esp_mqtt_client_handle_t client;
-
-
 
 extern const char *TAG;
 

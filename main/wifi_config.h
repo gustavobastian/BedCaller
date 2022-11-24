@@ -16,17 +16,13 @@
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
 #include "freertos/queue.h"
-
-
+#include "passwords.h"
 
 /* 
     Set SSID, Password, retries allowed.
 */
-#define EXAMPLE_ESP_WIFI_SSID      "TP-Link_20B2"
-#define EXAMPLE_ESP_WIFI_PASS      "74022687"
 #define EXAMPLE_ESP_MAXIMUM_RETRY  10
 extern const char *TAG;
-
 
 /* FreeRTOS event group to signal when we are connected*/
 extern EventGroupHandle_t s_wifi_event_group;

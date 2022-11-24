@@ -21,9 +21,7 @@
 #include "lwip/sys.h"
 
 #include "wifi_config.h"
-
 #include "mqtt_functions.h"
-
 #include "keyboard.h"
 
 
