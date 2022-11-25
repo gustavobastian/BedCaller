@@ -24,7 +24,7 @@ extern int keyValue;
 int keyboardInit();
 int keyboardRefresh();
 void initCaller();
-void generateJson(char *buffer,int dispositivoId, char *nombre,char *ubicacion,int luz1, int luz2 ,float temp, float humedad);
+
 void generateJsonKey(char *buffer,int key);
 
 
