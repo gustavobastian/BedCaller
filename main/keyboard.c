@@ -92,8 +92,7 @@ int keyboardRefresh( void )
 	columnNumber++;
 	//powering columns
 	if(columnNumber==1)
-	{
-		//printf("Keyboard column 1\n");
+	{		
 		gpio_set_level( GPIO_COLUMN_1, 1 );
     	gpio_set_level( GPIO_COLUMN_2, 0 );
     	gpio_set_level( GPIO_COLUMN_3, 0 );
@@ -101,7 +100,6 @@ int keyboardRefresh( void )
 	}
 	else if(columnNumber==2)
 	{
-		//printf("Keyboard column 2\n");
 		gpio_set_level( GPIO_COLUMN_1, 0 );
     	gpio_set_level( GPIO_COLUMN_2, 1 );
     	gpio_set_level( GPIO_COLUMN_3, 0 );
@@ -109,33 +107,30 @@ int keyboardRefresh( void )
 	}
 	else if(columnNumber==3)
 	{
-		//printf("Keyboard column 3\n");
 		gpio_set_level( GPIO_COLUMN_1, 0 );
     	gpio_set_level( GPIO_COLUMN_2, 0 );
     	gpio_set_level( GPIO_COLUMN_3, 1 );
     	gpio_set_level( GPIO_COLUMN_4, 0 );
 	}
 	else if(columnNumber==4)
-	{
-		//printf("Keyboard column 4\n");
+	{		
 		gpio_set_level( GPIO_COLUMN_1, 0 );
     	gpio_set_level( GPIO_COLUMN_2, 0 );
     	gpio_set_level( GPIO_COLUMN_3, 0 );
     	gpio_set_level( GPIO_COLUMN_4, 1 );
 	}
-	//reading rows(ONLY 2 AND 3)
+	
+
 	
 	if(gpio_get_level(GPIO_ROW_2)==1)
 	{
-		rowNumber=0;
-		//printf("%d|%d\n",rowNumber,columnNumber);
+		rowNumber=0;	
 		printf("key:%x\n",keyboard[columnNumber]);	
 		keyValue=keyboard[columnNumber];
 	}
 	if(gpio_get_level(GPIO_ROW_3)==1)
 	{
-		rowNumber=1;
-		//printf("%d|%d\n",rowNumber,columnNumber);
+		rowNumber=1;		
 		printf("key:%x\n",keyboard[4+columnNumber]);	
 		keyValue=keyboard[4+columnNumber];
 	}
